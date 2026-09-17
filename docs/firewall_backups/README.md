@@ -13,4 +13,4 @@ Default laboratory credentials:
 
 Configuration backup:
 
-- [Firewall 1 pfSense configuration](firewall1-sanitized.xml)
+- [Firewall 1 pfSense configuration](firewall1.xml)

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Refrescos Favoritos — Customer Portal</title>
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#111823; --muted:#9fb0c0; --text:#e6eef6; --brand:#6bd1ff; --brand2:#23a6d5; --danger:#ff6b6b;
+      --card:#0f1520; --border:#1e2a38; --accent:#1b2330; --ok:#38d9a9;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;background:radial-gradient(1000px 600px at 10% -10%,#14202f 0%,transparent 60%),linear-gradient(180deg,#0b0f14 0%,#0a0e13 100%);color:var(--text);font:16px/1.6 system-ui,Segoe UI,Roboto,Ubuntu,Arial;}
+    header{position:sticky;top:0;background:rgba(17,24,35,.75);backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid var(--border);z-index:5}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px;}
+    .bar{display:flex;align-items:center;gap:16px;}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand2));box-shadow:0 0 24px rgba(35,166,213,.35);}
+    .title{font-weight:700;letter-spacing:.3px}
+    nav{margin-left:auto;display:flex;gap:14px}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:8px}
+    nav a:hover{background:var(--accent);color:var(--text)}
+    .hero{padding:60px 0;background:linear-gradient(180deg,rgba(35,166,213,.08),transparent);}
+    .hero h1{font-size:34px;line-height:1.2;margin:0 0 10px}
+    .hero p{color:var(--muted);margin:0}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:28px 0}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .muted{color:var(--muted)}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+    form label{display:block;margin:10px 0 6px}
+    input,textarea{width:100%;background:#0c121b;border:1px solid var(--border);border-radius:10px;padding:10px;color:var(--text);outline:none}
+    input:focus,textarea:focus{border-color:var(--brand)}
+    textarea{min-height:120px;resize:vertical}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .btn{appearance:none;border:0;border-radius:10px;padding:12px 16px;font-weight:600;cursor:pointer}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#001018;box-shadow:0 10px 24px rgba(35,166,213,.35)}
+    .btn-primary:hover{filter:brightness(1.05)}
+    .hint{font-size:13px;color:var(--muted)}
+    footer{margin-top:40px;padding:24px 0;border-top:1px solid var(--border);color:var(--muted)}
+    .ok{color:var(--ok)}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <div class="logo"></div>
+    <div class="title">Refrescos Favoritos</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#company">Company</a>
+      <a href="#support">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <h1>Customer Portal</h1>
+      <p>Browse company information and open support tickets for priority follow-up.</p>
+      <div class="grid">
+        <div class="card"><h3>Production</h3><p class="muted">Capacity of 120k bottles/hour with inline quality control.</p></div>
+        <div class="card"><h3>Certifications</h3><p class="muted">ISO 22000, HACCP, and real-time lot traceability.</p></div>
+        <div class="card"><h3>Contact</h3><p class="muted">24/7 support for strategic clients and distributors.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="company" class="wrap">
+    <div class="panel">
+      <h2>About the company</h2>
+      <p class="muted">Refrescos Favoritos is a leading carbonated beverages producer across 12 countries. This portal lets our clients manage support and see updates.</p>
+    </div>
+  </section>
+
+  <section id="support" class="wrap" style="margin-top:28px;">
+    <div class="panel">
+      <h2>Support</h2>
+      <p class="muted">Describe your issue and attach a screenshot. Our team will reply shortly.</p>
+
+      <form class="form" method="post" action="support.php" enctype="multipart/form-data">
+        <div class="row">
+          <div>
+            <label>Name</label>
+            <input name="name" placeholder="Your name" required />
+          </div>
+          <div>
+            <label>Email</label>
+            <input name="email" type="email" placeholder="email@example.com" required />
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>Phone</label>
+            <input name="phone" placeholder="+34 600 000 000" />
+          </div>
+          <div>
+            <label>Screenshot / file</label>
+            <input name="file" type="file" />
+            <div class="hint">Accepts images or attachments.</div>
+          </div>
+        </div>
+        <label>Issue description</label>
+        <textarea name="desc" placeholder="Tell us what’s happening..." required></textarea>
+
+        <div style="margin-top:16px; display:flex; gap:10px; align-items:center;">
+          <button class="btn btn-primary" type="submit">Submit ticket</button>
+          <span class="hint">You will receive a confirmation email.</span>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    © Refrescos Favoritos · Customer Center · <span class="ok">Online</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -28,3 +28,16 @@ Industrial DMZ.
 ### Configuration backup
 
 - [Firewall 2 pfSense configuration](firewall2.xml)
+
+## Firewall 3
+
+Firewall 3 separates the Industrial DMZ from the OT networks.
+
+### Default laboratory credentials
+
+- Username: `admin`
+- Password: `pfsense`
+
+### Configuration backup
+
+- [Firewall 3 pfSense configuration](firewall3.xml)

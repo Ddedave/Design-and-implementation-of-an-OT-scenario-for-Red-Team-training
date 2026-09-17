@@ -1,4 +1,4 @@
-## Firewall 2 — Enterprise / Industrial DMZ
+## Firewall 2 — Enterprise / IDMZ
 
 This pfSense firewall separates the Level 4 Enterprise network from the Industrial DMZ (Level 3.5).
 

@@ -6,7 +6,7 @@ It is deployed in the Level 5 Internet-facing DMZ and exposes an intentionally v
 
 ## System Information
 
-- Operating system: Debian 12
+- Operating system: Debian 13
 - CPU: 2 vCPU
 - Memory: 3 GB RAM
 - Disk: 20 GB

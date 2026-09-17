@@ -1,0 +1,44 @@
+## Firewall 2 — Enterprise / Industrial DMZ
+
+This pfSense firewall separates the Level 4 Enterprise network from the Industrial DMZ (Level 3.5).
+
+### Interfaces
+
+| Interface | IP Address | Network |
+|---|---|---|
+| WAN | `10.10.4.254/24` | Enterprise Network |
+| LAN | `10.10.35.1/24` | Industrial DMZ |
+
+### NAT
+
+Outbound NAT is disabled on this firewall.
+
+### WAN Firewall Rules
+
+The firewall restricts access from the Enterprise network into the Industrial DMZ to the IT Desktop used in the exercise.
+
+| Action | Source | Destination | Protocol / Port | Purpose |
+|---|---|---|---|---|
+| Pass | `10.10.4.102` | `10.10.35.120` | ICMP | Connectivity testing to the Jump Server |
+| Pass | `10.10.4.102` | `10.10.35.120` | TCP/3389 | RDP access to the Jump Server |
+| Pass | `10.10.4.102` | This firewall | ICMP | Firewall connectivity testing |
+| Pass | `10.10.4.102` | This firewall | TCP/80 | pfSense WebConfigurator access |
+| Block | Any | Any | Any | Block all other traffic towards the IDMZ |
+
+### LAN Behaviour
+
+The Industrial DMZ uses `10.10.35.1` as its gateway.
+
+The Jump Server is configured as:
+
+- IP address: `10.10.35.120/24`
+- Default gateway: `10.10.35.1`
+
+The current configuration retains the default IPv4 `LAN net → any` allow rule on the IDMZ-facing interface.
+
+### Notes
+
+This firewall intentionally exposes only a narrow path from the Enterprise network into the Industrial DMZ.
+
+The IT Desktop at `10.10.4.102` is the only authorised Enterprise host allowed to reach the Jump Server, and RDP is the primary access method.
+All other inbound traffic from the Enterprise side is explicitly blocked.

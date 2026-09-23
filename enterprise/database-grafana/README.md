@@ -6,7 +6,7 @@ It hosts Grafana for data visualisation and monitoring.
 
 # System Information
 
-- Operating system: Debian
+- Operating system: Debian 13
 - CPU: 2 vCPU
 - Memory: 2 GB RAM
 - Disk: 20 GB

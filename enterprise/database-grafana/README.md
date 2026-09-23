@@ -4,6 +4,16 @@ This system represents a Grafana server deployed in the Level 4 Enterprise netwo
 
 It hosts Grafana for data visualisation and monitoring.
 
+# System Information
+
+- Operating system: Debian
+- CPU: 2 vCPU
+- Memory: 2 GB RAM
+- Disk: 20 GB
+- Host role: Enterprise database and monitoring server
+- Network adapter: Level 4 Enterprise subnet
+- IP address: `10.10.4.108/24`
+
 ## Network Configuration
 
 - IP address: `10.10.4.108/24`

@@ -173,6 +173,20 @@ This system contains a single flag associated with the SMB exploitation stage:
 |---|---|
 | `flag{smbflag}` | Confirm successful compromise of the IT Desktop through the SMB attack path |
 
+## Additional Software
+
+The workstation includes a small set of additional tools.
+
+### Mozilla Firefox
+
+Mozilla Firefox is installed as the primary web browser available on the workstation.
+
+It is used for general access to internal web resources and administrative interfaces within the laboratory.
+
+### PuTTY
+
+PuTTY is also installed on the workstation as an auxiliary remote-access utility.
+
 ## Security Notice
 
 This virtual machine is intentionally vulnerable.

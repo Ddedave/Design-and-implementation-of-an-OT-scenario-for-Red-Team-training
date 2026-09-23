@@ -1,0 +1,15 @@
+
+DB_HOST=10.10.4.108
+
+
+DB_PORT=3306
+
+
+DB_NAME=enterprise_db
+
+
+DB_USER=backup_reader
+
+
+DB_PASS=backup2026
+

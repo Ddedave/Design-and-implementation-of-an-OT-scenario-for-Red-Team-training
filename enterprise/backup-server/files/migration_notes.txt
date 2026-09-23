@@ -1,0 +1,27 @@
+Enterprise Migration Notes
+
+-------------------
+
+DB/Grafana migration completed.
+
+
+
+New server:
+
+10.10.4.108
+
+
+Services:
+
+- Grafana: http://10.10.4.108:3000
+
+- MariaDB: local access only
+
+- SSH: enabled for Linux maintenance
+
+Temporary Grafana admin account still requires review.
+
+Default credentials were not rotated after migration.
+
+Check linux_maintenance.txt for temporary SSH access.
+Check backup_inventory.env for database inventory credentials.

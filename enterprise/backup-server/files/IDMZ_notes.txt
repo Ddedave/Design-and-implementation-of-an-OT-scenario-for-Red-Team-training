@@ -1,0 +1,24 @@
+IDMZ Access Migration Notes
+
+---------------------------
+
+
+Future Jump Server:
+
+10.10.35.120
+
+Purpose:
+
+Remote Access for controlled OT access.
+
+Direct Enterprise access to SCADA/OT systems should be blocked.
+
+Approved access must go through the Jump Server.
+
+Known downstream systems:
+
+- SCADA Operations: 10.10.3.10
+
+- I/O Server: 10.10.3.20
+
+Jump Server maintenance account information is tracked in the monitoring dashboard after validation.

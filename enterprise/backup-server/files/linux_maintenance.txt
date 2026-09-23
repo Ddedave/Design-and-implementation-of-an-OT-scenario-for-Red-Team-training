@@ -1,0 +1,37 @@
+cat > /srv/backups/linux_maintenance.txt << 'EOF'
+
+Linux Maintenance Access Notes
+
+------------------------------
+
+
+
+Temporary Linux maintenance access was enabled during the Enterprise backup migration.
+
+
+
+Server: 10.10.4.108
+
+Protocol: SSH
+
+Port: 22
+
+
+
+User: dbuser
+
+Temporary password: dbpassworduser123
+
+
+
+This account is intended for local maintenance tasks only.
+
+Password rotation is pending after the migration window.
+
+
+
+Note:
+
+Database credentials are stored in the backup inventory configuration file.
+
+EOF

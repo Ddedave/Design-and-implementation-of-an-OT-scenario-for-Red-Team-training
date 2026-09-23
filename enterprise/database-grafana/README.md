@@ -56,3 +56,19 @@ The address is obtained from the internal note stored on the IT Desktop:
     Backup server is now at 10.10.4.107
 
 This information provides the next set of targets within the network.
+
+## Dashboard Import
+
+The Grafana dashboard configuration is provided in:
+
+    idmz-ot-access-overview.json
+
+To restore the dashboard:
+
+1. Open Grafana.
+2. Navigate to **Dashboards → New → Import**.
+3. Upload the JSON file.
+4. Confirm the dashboard import.
+5. Verify that the dashboard appears as:
+
+       IDMZ Migration / OT Access Overview

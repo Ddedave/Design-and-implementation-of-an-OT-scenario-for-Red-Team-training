@@ -1,0 +1,14 @@
+## MariaDB Database
+
+The laboratory database is provided in:
+
+    database/enterprise_db.sql
+
+The dump contains the schema and data required to recreate the
+`enterprise_db` database used by the training scenario.
+
+To restore the database:
+
+    mysql -u root -p enterprise_db < mariadb/enterprise_db.sql
+
+The database contains intentionally exposed internal infrastructure information and exercise flags used during the Enterprise reconnaissance stage.

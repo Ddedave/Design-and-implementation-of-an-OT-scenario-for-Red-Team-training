@@ -165,6 +165,14 @@ The permitted communication includes:
 
 This restriction ensures that progression toward the Industrial DMZ occurs through the intended compromised workstation rather than through arbitrary Enterprise hosts.
 
+## Exercise Flag
+
+This system contains a single flag associated with the SMB exploitation stage:
+
+| Flag | Objective |
+|---|---|
+| `flag{smbflag}` | Confirm successful compromise of the IT Desktop through the SMB attack path |
+
 ## Security Notice
 
 This virtual machine is intentionally vulnerable.

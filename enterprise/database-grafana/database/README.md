@@ -4,6 +4,12 @@ The laboratory database is provided in:
 
     database/enterprise_db.sql
 
+The laboratory uses the following database account:
+
+    User: backup_reader
+    Allowed host: %
+    Password: backup2026
+
 The dump contains the schema and data required to recreate the
 `enterprise_db` database used by the training scenario.
 

@@ -36,6 +36,14 @@ The intended progression is:
     Discovery of 10.10.4.107
         ↓
     Backup Server
+        ↓
+    SMB Share
+        ↓
+    Migration and maintenance information
+        ↓
+    Grafana Server
+        ↓
+    Industrial DMZ information
 
 ## Services
 
@@ -64,3 +72,66 @@ The share is available at:
     \\10.10.4.107\backups
 
 The contents of this share are used as part of the Enterprise discovery and lateral movement phase of the exercise.
+
+## Backup Files
+
+The SMB share contains the following files:
+
+### `readme.txt`
+
+Provides a short description of the Enterprise backup repository and indicates
+that migration activities and temporary maintenance accounts are still being
+reviewed.
+
+### `migration_notes.txt`
+
+Contains information about the migration of the DB/Grafana server to:
+
+    10.10.4.108
+
+The note identifies the following services:
+
+    Grafana: http://10.10.4.108:3000
+    MariaDB: local access only
+    SSH: enabled for Linux maintenance
+
+It also indicates that temporary Grafana and Linux maintenance credentials
+have not yet been rotated.
+
+### `linux_maintenance.txt`
+
+Contains temporary Linux maintenance access information for the DB/Grafana
+Server:
+
+    Server: 10.10.4.108
+    Protocol: SSH
+    Port: 22
+    User: dbuser
+    Temporary password: dbpassworduser123
+
+These credentials are intentionally exposed as part of the laboratory scenario.
+
+### `backup_inventory.txt`
+
+Contains database inventory configuration information:
+
+    DB_HOST=10.10.4.108
+    DB_PORT=3306
+    DB_NAME=enterprise_db
+    DB_USER=backup_reader
+    DB_PASS=backup2026
+
+### `IDMZ_notes.txt`
+
+Contains information about the future Industrial DMZ access architecture.
+
+The note identifies the Jump Server:
+
+    10.10.35.120
+
+and the downstream OT systems:
+
+    SCADA Operations: 10.10.3.10
+    I/O Server: 10.10.3.20
+
+It also states that direct Enterprise access to OT systems should be blocked and that approved access must pass through the Jump Server.

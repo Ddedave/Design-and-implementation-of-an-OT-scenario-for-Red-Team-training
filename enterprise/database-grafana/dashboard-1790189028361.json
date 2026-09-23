@@ -1,0 +1,286 @@
+{
+  "apiVersion": "dashboard.grafana.app/v2",
+  "kind": "Dashboard",
+  "metadata": {
+    "name": "idmz-ot-access-overview",
+    "namespace": "default",
+    "uid": "bc8893d1-cff3-496a-aae5-92a6bd41d99c",
+    "resourceVersion": "1790191018819002",
+    "generation": 17,
+    "creationTimestamp": "2026-08-12T23:19:57Z",
+    "labels": {
+      "grafana.app/deprecatedInternalID": "2223490698575872"
+    },
+    "annotations": {
+      "grafana.app/createdBy": "user:ffuvrwy6sd8g0e",
+      "grafana.app/saved-from-ui": "Grafana v13.1.3 (45a27d64b6)",
+      "grafana.app/updatedBy": "user:ffuvrwy6sd8g0e",
+      "grafana.app/updatedTimestamp": "2026-09-23T19:16:58Z"
+    }
+  },
+  "spec": {
+    "annotations": [
+      {
+        "kind": "AnnotationQuery",
+        "spec": {
+          "query": {
+            "kind": "DataQuery",
+            "group": "grafana",
+            "version": "v0",
+            "datasource": {
+              "name": "-- Grafana --"
+            },
+            "spec": {}
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "builtIn": true
+        }
+      }
+    ],
+    "cursorSync": "Off",
+    "editable": true,
+    "elements": {
+      "panel-1": {
+        "kind": "Panel",
+        "spec": {
+          "id": 1,
+          "title": " Monitoring Overview",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "13.1.3",
+            "spec": {
+              "options": {
+                "code": {
+                  "language": "plaintext",
+                  "showLineNumbers": false,
+                  "showMiniMap": false
+                },
+                "content": "# Enterprise Monitoring Overview\n\nThis dashboard tracks the migration status of Level 4 monitoring services and IDMZ remote access components.\n\n## Current monitored systems\n\n| System | IP Address | Zone | Role |\n|---|---:|---|---|\n| Backup Server | 10.10.4.107 | Level 4 - Enterprise | Backup repository |\n|DB/Grafana Server|10.10.4.108 | Level 4 - Enterprise | Monitoring / Inventory |\n| Jump Server | 10.10.35.120 | Level 3.5 - IDMZ | Jump server |\n| SCADA Operations | 10.10.3.10 | Level 3 - Operations | SCADA server |\n| I/O Server | 10.10.3.20 | Level 3 - Operations | Plant data collection |\n\nDirect access from Enterprise to OT systems should remain blocked.\n\nApproved access must be performed through the jump server.",
+                "mode": "markdown"
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-2": {
+        "kind": "Panel",
+        "spec": {
+          "id": 2,
+          "title": "IDMZ Migration Status",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "13.1.3",
+            "spec": {
+              "options": {
+                "code": {
+                  "language": "plaintext",
+                  "showLineNumbers": false,
+                  "showMiniMap": false
+                },
+                "content": "# IDMZ Migration Status\n\nJump Server deployment is pending final validation.\n\n## Jump Server\n\n- **Host:** 10.10.35.120\n- **Access method:** RDP\n- **Allowed source:** Level 4 Enterprise Workstations\n- **Purpose:** Controlled remote access into OT systems\n\n## Pending tasks\n\n- Validate Jump Server user access.\n- Rotate temporary maintenance credentials.\n- Confirm SCADA read-only session profile.\n- Confirm that direct Enterprise to OT access remains blocked.\n\nThe Jump Server must be used for approved OT sessions.",
+                "mode": "markdown"
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-3": {
+        "kind": "Panel",
+        "spec": {
+          "id": 3,
+          "title": "Migration Validation Flag",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "13.1.3",
+            "spec": {
+              "options": {
+                "code": {
+                  "language": "plaintext",
+                  "showLineNumbers": false,
+                  "showMiniMap": false
+                },
+                "content": "# Migration Validation Flag\n\nFlag:\n\n`flag{grafana_idmz_find}`\n\nThis flag confirms that the internal monitoring dashboard was reviewed and the jump server access path was recovered.",
+                "mode": "markdown"
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
+      },
+      "panel-4": {
+        "kind": "Panel",
+        "spec": {
+          "id": 4,
+          "title": "Maintenance Notes",
+          "description": "",
+          "links": [],
+          "data": {
+            "kind": "QueryGroup",
+            "spec": {
+              "queries": [],
+              "transformations": [],
+              "queryOptions": {}
+            }
+          },
+          "vizConfig": {
+            "kind": "VizConfig",
+            "group": "text",
+            "version": "13.1.3",
+            "spec": {
+              "options": {
+                "code": {
+                  "language": "plaintext",
+                  "showLineNumbers": false,
+                  "showMiniMap": false
+                },
+                "content": "# Maintenance Access Notes\n\n\n\nTemporary maintenance access was created during IDMZ validation.\n\n## Jump Server\n\n\n\n- **Host:** 10.10.35.120\n\n- **Protocol:** RDP\n\n- **Username:** plant_maintenance\n\n- **Temporary password:** TemporaryPlantMaint2026!\n\nThis account was created for vendor maintenance validation.\n\n\n\nPassword rotation is still pending after the migration window.",
+                "mode": "markdown"
+              },
+              "fieldConfig": {
+                "defaults": {},
+                "overrides": []
+              }
+            }
+          }
+        }
+      }
+    },
+    "layout": {
+      "kind": "GridLayout",
+      "spec": {
+        "items": [
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 0,
+              "width": 24,
+              "height": 12,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-1"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 12,
+              "width": 11,
+              "height": 11,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-2"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 11,
+              "y": 12,
+              "width": 13,
+              "height": 11,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-4"
+              }
+            }
+          },
+          {
+            "kind": "GridLayoutItem",
+            "spec": {
+              "x": 0,
+              "y": 23,
+              "width": 11,
+              "height": 6,
+              "element": {
+                "kind": "ElementReference",
+                "name": "panel-3"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "links": [],
+    "liveNow": false,
+    "preload": false,
+    "tags": [
+      "enterprise",
+      "idmz",
+      "ot",
+      "migration"
+    ],
+    "timeSettings": {
+      "timezone": "browser",
+      "from": "now-6h",
+      "to": "now",
+      "autoRefresh": "",
+      "autoRefreshIntervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "hideTimepicker": false,
+      "fiscalYearStartMonth": 0
+    },
+    "title": "IDMZ Migration / OT Access Overview",
+    "variables": []
+  }
+}

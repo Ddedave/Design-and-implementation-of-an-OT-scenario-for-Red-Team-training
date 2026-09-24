@@ -65,6 +65,20 @@ The Grafana dashboard exposes the following temporary maintenance credentials:
 
 These credentials are intentionally exposed as part of the isolated training scenario.
 
+## Installed Tools
+
+The Jump Server includes utilities required to access and validate selected OT services from the IDMZ.
+
+Installed tools include:
+
+- `modpoll` — Modbus TCP client used to query and interact with Modbus-enabled devices.
+- Mozilla Firefox — Used to access internal web interfaces and management services.
+- Remote Desktop components.
+- Standard Windows administrative and networking tools.
+
+These tools allow the Jump Server to function as the main workstation for
+controlled access into the lower Purdue levels.
+
 ## OT Access
 
 The Jump Server is allowed to communicate with selected systems in the OT environment.

@@ -1,0 +1,350 @@
+[
+    {
+        "id": "3bd24cf3d6d5f494",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "29d064add17e70d9",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "ae861ecbcffc3dc9",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#ffffff",
+            "primary": "#0094CE",
+            "bgPage": "#eeeeee",
+            "groupBg": "#ffffff",
+            "groupOutline": "#cccccc"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "9902d57c9db5212b",
+        "type": "ui-page",
+        "name": "Page 1",
+        "ui": "29d064add17e70d9",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "ae861ecbcffc3dc9",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": 0,
+                "cols": 3
+            },
+            {
+                "name": "Tablet",
+                "px": 576,
+                "cols": 6
+            },
+            {
+                "name": "Small Desktop",
+                "px": 768,
+                "cols": 9
+            },
+            {
+                "name": "Desktop",
+                "px": 1024,
+                "cols": 12
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": true,
+        "disabled": false
+    },
+    {
+        "id": "a7547ced0646bbeb",
+        "type": "ui-group",
+        "name": "Mixer status",
+        "page": "9902d57c9db5212b",
+        "width": 6,
+        "height": 1,
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "202028a2024cc410",
+        "type": "http request",
+        "z": "3bd24cf3d6d5f494",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://10.10.3.20:8080/api/process",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 310,
+        "y": 220,
+        "wires": [
+            [
+                "1ce755a70466e7ae",
+                "7e6becf0ee5863d2",
+                "5c03a06daec342c5"
+            ]
+        ]
+    },
+    {
+        "id": "bdfdf24d32a8489a",
+        "type": "inject",
+        "z": "3bd24cf3d6d5f494",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "20",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "202028a2024cc410"
+            ]
+        ]
+    },
+    {
+        "id": "1ce755a70466e7ae",
+        "type": "function",
+        "z": "3bd24cf3d6d5f494",
+        "name": "Mixer Speed",
+        "func": "msg.payload = msg.payload.assets.PLC1_MIXER.mixing_speed_rpm;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 160,
+        "wires": [
+            [
+                "1a2417b82527f0f1"
+            ]
+        ]
+    },
+    {
+        "id": "1a2417b82527f0f1",
+        "type": "ui-gauge",
+        "z": "3bd24cf3d6d5f494",
+        "name": "Mixer speed",
+        "group": "a7547ced0646bbeb",
+        "order": 3,
+        "value": "payload",
+        "valueType": "msg",
+        "width": 3,
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Mixer Speed",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "rpm",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1200",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1500",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "2500",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 710,
+        "y": 160,
+        "wires": [
+            [
+                "ef8f69acc284d0e4"
+            ]
+        ]
+    },
+    {
+        "id": "7e6becf0ee5863d2",
+        "type": "function",
+        "z": "3bd24cf3d6d5f494",
+        "name": "Tank level",
+        "func": "msg.payload = msg.payload.assets.PLC1_MIXER.tank_level_percent;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 220,
+        "wires": [
+            [
+                "fe3a0110d66aaf39"
+            ]
+        ]
+    },
+    {
+        "id": "fe3a0110d66aaf39",
+        "type": "ui-template",
+        "z": "3bd24cf3d6d5f494",
+        "group": "a7547ced0646bbeb",
+        "page": "",
+        "ui": "",
+        "name": "Tank level",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<div style=\"text-align:center; width:100%;\">\n\n    <div style=\"font-size:18px; font-weight:bold; margin-bottom:10px;\">\n        MIXER TANK\n    </div>\n\n    <svg width=\"180\" height=\"300\" viewBox=\"0 0 180 300\">\n\n        <!-- Fondo del tanque -->\n        <rect\n            x=\"40\"\n            y=\"20\"\n            width=\"100\"\n            height=\"220\"\n            rx=\"15\"\n            fill=\"#eeeeee\"\n        />\n\n        <!-- Líquido -->\n        <rect\n            x=\"46\"\n            :y=\"234 - ((Number(msg.payload) || 0) * 2.08)\"\n            width=\"88\"\n            :height=\"(Number(msg.payload) || 0) * 2.08\"\n            :fill=\"(Number(msg.payload) || 0) >= 90\n                ? '#ef4444'\n                : (Number(msg.payload) || 0) >= 75\n                    ? '#f59e0b'\n                    : '#42a5f5'\"\n        />\n\n        <!-- Contorno -->\n        <rect\n            x=\"40\"\n            y=\"20\"\n            width=\"100\"\n            height=\"220\"\n            rx=\"15\"\n            fill=\"none\"\n            stroke=\"#888888\"\n            stroke-width=\"6\"\n        />\n\n        <!-- Porcentaje -->\n        <text\n            x=\"90\"\n            y=\"140\"\n            text-anchor=\"middle\"\n            font-size=\"28\"\n            font-weight=\"bold\"\n            fill=\"#222222\">\n            {{ msg.payload }} %\n        </text>\n\n        <g v-if=\"(Number(msg.payload) || 0) >= 90\">\n\n            <text x=\"90\" y=\"258\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#ef4444\">\n            ⚠ HIGH LEVEL ALARM\n            </text>\n\n            <text x=\"90\" y=\"282\" text-anchor=\"middle\" font-size=\"11\" font-weight=\"bold\" fill=\"#ef4444\">\n            flag{mixer_tank_high_level}\n            </text>\n\n        </g>\n\n        <!-- Estado normal -->\n        <text\n            v-else\n            x=\"90\"\n            y=\"270\"\n            text-anchor=\"middle\"\n            font-size=\"15\"\n            fill=\"#333333\">\n            Tank Level\n        </text>\n\n    </svg>\n</div>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 700,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7138dd3fef4c144a",
+        "type": "ui-template",
+        "z": "3bd24cf3d6d5f494",
+        "group": "a7547ced0646bbeb",
+        "page": "",
+        "ui": "",
+        "name": "mixer running",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<div style=\"text-align:center; padding:15px;\">\n\n    <div style=\"font-size:18px; font-weight:bold; margin-bottom:15px;\">\n        MIXER STATUS\n    </div>\n\n    <!-- RUNNING -->\n    <div v-if=\"msg.payload === true\">\n\n        <div class=\"mixer-running\">\n            ⚙\n        </div>\n\n        <div style=\"\n            margin-top:10px;\n            font-size:20px;\n            font-weight:bold;\n            color:#22c55e;\n        \">\n            ● RUNNING\n        </div>\n\n        <div style=\"\n            margin-top:5px;\n            font-size:13px;\n            opacity:0.7;\n        \">\n            Mixer motor active\n        </div>\n\n    </div>\n\n\n    <!-- STOPPED -->\n    <div v-else>\n\n        <div class=\"mixer-stopped\">\n            ⚙\n        </div>\n\n        <div style=\"\n            margin-top:10px;\n            font-size:20px;\n            font-weight:bold;\n            color:#ef4444;\n        \">\n            ● STOPPED\n        </div>\n\n        <div style=\"\n            margin-top:15px;\n            padding:10px;\n            border:2px solid #ef4444;\n            border-radius:8px;\n            font-size:14px;\n            font-weight:bold;\n        \">\n            flag{mixer_process_stopped}\n        </div>\n\n    </div>\n\n</div>\n\n\n<style>\n\n.mixer-running {\n    display:inline-block;\n    font-size:70px;\n    animation: mixer-spin 1.2s linear infinite;\n}\n\n.mixer-stopped {\n    display:inline-block;\n    font-size:70px;\n    opacity:0.45;\n}\n\n@keyframes mixer-spin {\n    from {\n        transform: rotate(0deg);\n    }\n\n    to {\n        transform: rotate(360deg);\n    }\n}\n\n</style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 720,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c03a06daec342c5",
+        "type": "function",
+        "z": "3bd24cf3d6d5f494",
+        "name": "mixer running",
+        "func": "msg.payload = msg.payload.assets.PLC1_MIXER.mixer_running;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "7138dd3fef4c144a"
+            ]
+        ]
+    },
+    {
+        "id": "ef8f69acc284d0e4",
+        "type": "ui-template",
+        "z": "3bd24cf3d6d5f494",
+        "group": "a7547ced0646bbeb",
+        "page": "",
+        "ui": "",
+        "name": "",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<div style=\"text-align:center; padding:8px;\">\n\n    <div\n        v-if=\"(Number(msg.payload) || 0) > 1300\"\n        style=\"\n            padding:10px;\n            border:2px solid #ef4444;\n            border-radius:8px;\n            font-size:14px;\n            font-weight:bold;\n            color:#ef4444;\n        \"\n    >\n        ⚠ OVERSPEED CONDITION\n        <br>\n        flag{mixer_speed_threshold_exceeded}\n    </div>\n\n</div>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 880,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "697714f79ac9a2ec",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@flowfuse/node-red-dashboard": "1.30.2"
+        }
+    }
+]

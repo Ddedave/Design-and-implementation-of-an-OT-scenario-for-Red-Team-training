@@ -1,4 +1,4 @@
-#Design and implementation of an OT scenario for Red Team training
+# Design and implementation of an OT scenario for Red Team training
 
 This repository contains the technical documentation, configuration files, scripts and deployment instructions required to recreate the OT/ICS Red Team training laboratory developed as part of the Master's Thesis:
 

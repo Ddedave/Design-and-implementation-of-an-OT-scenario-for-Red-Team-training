@@ -1,0 +1,21 @@
+OT Network Segments
+-------------------
+
+IDMZ:
+10.10.35.0/24
+
+Operations / SCADA:
+10.10.3.0/24
+
+Supervisory / HMI:
+10.10.2.0/24
+
+Control / PLC:
+10.10.1.0/24
+
+Planned assets:
+- Historian Replica: 10.10.35.130
+- SCADA Operations: 10.10.3.10
+- I/O Server: 10.10.3.20
+- HMI 1: 10.10.2.20
+- PLC 1: 10.10.1.10

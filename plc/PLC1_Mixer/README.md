@@ -288,6 +288,6 @@ The configured value is:
 This directory contains:
 
     README.md
-    PLC1_MIXER.st
+    PLC1.st
 
-`PLC1_MIXER.st` contains the Structured Text implementation required to recreate the simulated mixer controller.
+`PLC1.st` contains the Structured Text implementation required to recreate the simulated mixer controller.

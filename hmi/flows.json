@@ -1,0 +1,592 @@
+[
+    {
+        "id": "defbbaec7d55bf59",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "705ae52aae33e225",
+        "type": "modbus-client",
+        "name": "Mixer",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "10.10.1.101",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "8e6ee6997f297870",
+        "type": "ui-base",
+        "name": "My Dashboard",
+        "path": "/dashboard",
+        "appIcon": "",
+        "includeClientData": true,
+        "acceptsClientConfig": [
+            "ui-notification",
+            "ui-control"
+        ],
+        "showPathInSidebar": false,
+        "headerContent": "page",
+        "navigationStyle": "default",
+        "titleBarStyle": "default",
+        "showReconnectNotification": true,
+        "notificationDisplayTime": 1,
+        "showDisconnectNotification": true,
+        "allowInstall": false
+    },
+    {
+        "id": "50d752eaf59ec9ab",
+        "type": "ui-theme",
+        "name": "Default Theme",
+        "colors": {
+            "surface": "#fcfcfd",
+            "primary": "#0d74ce",
+            "bgPage": "#f9f9fb",
+            "groupBg": "#ffffff",
+            "groupOutline": "#d9d9e0"
+        },
+        "sizes": {
+            "density": "default",
+            "pagePadding": "12px",
+            "groupGap": "12px",
+            "groupBorderRadius": "4px",
+            "widgetGap": "12px"
+        }
+    },
+    {
+        "id": "56c7476888d290ef",
+        "type": "ui-page",
+        "name": "Mixer",
+        "ui": "8e6ee6997f297870",
+        "path": "/page1",
+        "icon": "home",
+        "layout": "grid",
+        "theme": "50d752eaf59ec9ab",
+        "breakpoints": [
+            {
+                "name": "Default",
+                "px": "0",
+                "cols": "3"
+            },
+            {
+                "name": "Tablet",
+                "px": "576",
+                "cols": "6"
+            },
+            {
+                "name": "Small Desktop",
+                "px": "768",
+                "cols": "9"
+            },
+            {
+                "name": "Desktop",
+                "px": "1024",
+                "cols": "12"
+            }
+        ],
+        "order": 1,
+        "className": "",
+        "visible": "true",
+        "disabled": "false"
+    },
+    {
+        "id": "90fbf60b31d884f3",
+        "type": "ui-group",
+        "name": "PLC Mixer Supervision",
+        "page": "56c7476888d290ef",
+        "width": "13",
+        "height": "4",
+        "order": 1,
+        "showTitle": true,
+        "className": "",
+        "visible": "true",
+        "disabled": "false",
+        "groupType": "default"
+    },
+    {
+        "id": "ea289ba7ac884bc1",
+        "type": "modbus-read",
+        "z": "defbbaec7d55bf59",
+        "name": "Mixer Speed",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "",
+        "dataType": "HoldingRegister",
+        "adr": "1024",
+        "quantity": "4",
+        "rate": "1000",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "705ae52aae33e225",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "a5e39d7fadb46e96"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a5e39d7fadb46e96",
+        "type": "function",
+        "z": "defbbaec7d55bf59",
+        "name": "Data Extraction",
+        "func": "const regs = msg.payload;\n\nreturn [\n    { payload: regs[0], topic: \"mixing_speed_rpm\" },\n    { payload: regs[1], topic: \"target_mixing_speed_rpm\" },\n    { payload: regs[2], topic: \"tank_level_percent\" },\n    { payload: regs[3], topic: \"safe_mixing_limit_rpm\" }\n];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 120,
+        "wires": [
+            [
+                "c3ac2e038617786c"
+            ],
+            [
+                "cd1e2e25dda8c626"
+            ],
+            [
+                "02aa342e8b0eb4d5"
+            ]
+        ]
+    },
+    {
+        "id": "c3ac2e038617786c",
+        "type": "ui-gauge",
+        "z": "defbbaec7d55bf59",
+        "name": "Mixer Speed",
+        "group": "90fbf60b31d884f3",
+        "order": 4,
+        "value": "payload",
+        "valueType": "msg",
+        "width": "4",
+        "height": 3,
+        "gtype": "gauge-half",
+        "gstyle": "needle",
+        "title": "Mixer Speed",
+        "alwaysShowTitle": false,
+        "floatingTitlePosition": "top-left",
+        "units": "units",
+        "icon": "",
+        "prefix": "",
+        "suffix": "",
+        "segments": [
+            {
+                "from": "0",
+                "color": "#5cd65c",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1300",
+                "color": "#ffc800",
+                "text": "",
+                "textType": "label"
+            },
+            {
+                "from": "1600",
+                "color": "#ea5353",
+                "text": "",
+                "textType": "label"
+            }
+        ],
+        "min": 0,
+        "max": "2500",
+        "sizeThickness": 16,
+        "sizeGap": 4,
+        "sizeKeyThickness": 8,
+        "styleRounded": true,
+        "styleGlow": false,
+        "className": "",
+        "x": 750,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cd1e2e25dda8c626",
+        "type": "ui-slider",
+        "z": "defbbaec7d55bf59",
+        "group": "90fbf60b31d884f3",
+        "name": "Target Mixer Speed",
+        "label": "Target Mixer Speed",
+        "tooltip": "",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "thumbLabel": "true",
+        "showTicks": "always",
+        "min": 0,
+        "max": "1300",
+        "step": "50",
+        "className": "",
+        "iconPrepend": "",
+        "iconAppend": "",
+        "color": "",
+        "colorTrack": "",
+        "colorThumb": "",
+        "showTextField": false,
+        "x": 770,
+        "y": 140,
+        "wires": [
+            [
+                "ad4b6fdce3bcf0bd"
+            ]
+        ]
+    },
+    {
+        "id": "ad4b6fdce3bcf0bd",
+        "type": "function",
+        "z": "defbbaec7d55bf59",
+        "name": "Validate Setpoint",
+        "func": "let value = Number(msg.payload);\n\nif (isNaN(value)) {\n    return null;\n}\n\nif (value < 0) value = 0;\nif (value > 1300) value = 1300;\n\nmsg.payload = value;\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 950,
+        "y": 240,
+        "wires": [
+            [
+                "8aae7876cc3ea1ad"
+            ]
+        ]
+    },
+    {
+        "id": "8aae7876cc3ea1ad",
+        "type": "modbus-write",
+        "z": "defbbaec7d55bf59",
+        "name": "change speed",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "1025",
+        "quantity": "1",
+        "server": "705ae52aae33e225",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 920,
+        "y": 340,
+        "wires": [
+            [
+                "ffa822027ffc4a11"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ffa822027ffc4a11",
+        "type": "debug",
+        "z": "defbbaec7d55bf59",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "02aa342e8b0eb4d5",
+        "type": "ui-template",
+        "z": "defbbaec7d55bf59",
+        "group": "90fbf60b31d884f3",
+        "page": "",
+        "ui": "",
+        "name": "Tank level",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<div style=\"text-align:center; width:100%;\">\n\n    <div style=\"font-size:18px; font-weight:bold; margin-bottom:10px;\">\n        MIXER TANK\n    </div>\n\n    <svg width=\"180\" height=\"300\" viewBox=\"0 0 180 300\">\n\n        <!-- Fondo del tanque -->\n        <rect\n            x=\"40\"\n            y=\"20\"\n            width=\"100\"\n            height=\"220\"\n            rx=\"15\"\n            fill=\"#eeeeee\"\n        />\n\n        <!-- Líquido -->\n        <rect\n            x=\"46\"\n            :y=\"234 - ((Number(msg.payload) || 0) * 2.08)\"\n            width=\"88\"\n            :height=\"(Number(msg.payload) || 0) * 2.08\"\n            :fill=\"(Number(msg.payload) || 0) >= 90\n                ? '#ef4444'\n                : (Number(msg.payload) || 0) >= 75\n                    ? '#f59e0b'\n                    : '#42a5f5'\"\n        />\n\n        <!-- Contorno -->\n        <rect\n            x=\"40\"\n            y=\"20\"\n            width=\"100\"\n            height=\"220\"\n            rx=\"15\"\n            fill=\"none\"\n            stroke=\"#888888\"\n            stroke-width=\"6\"\n        />\n\n        <!-- Porcentaje -->\n        <text\n            x=\"90\"\n            y=\"140\"\n            text-anchor=\"middle\"\n            font-size=\"28\"\n            font-weight=\"bold\"\n            fill=\"#222222\">\n            {{ msg.payload }} %\n        </text>\n\n        <!-- Alarma -->\n        <g v-if=\"(Number(msg.payload) || 0) >= 90\">\n\n            <text\n                x=\"90\"\n                y=\"260\"\n                text-anchor=\"middle\"\n                font-size=\"14\"\n                font-weight=\"bold\"\n                fill=\"#ef4444\">\n                ⚠ HIGH LEVEL\n            </text>\n\n            <text\n                x=\"90\"\n                y=\"282\"\n                text-anchor=\"middle\"\n                font-size=\"14\"\n                font-weight=\"bold\"\n                fill=\"#ef4444\">\n                ALARM\n            </text>\n\n        </g>\n\n        <!-- Estado normal -->\n        <text\n            v-if=\"(Number(msg.payload) || 0) < 90\"\n            x=\"90\"\n            y=\"270\"\n            text-anchor=\"middle\"\n            font-size=\"15\"\n            fill=\"#333333\">\n            Tank Level\n        </text>\n\n    </svg>\n\n</div>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 680,
+        "y": 240,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e7d35783b0b0247",
+        "type": "modbus-read",
+        "z": "defbbaec7d55bf59",
+        "name": "PLc coil",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "3",
+        "rate": "1000",
+        "rateUnit": "ms",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "705ae52aae33e225",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 250,
+        "y": 340,
+        "wires": [
+            [
+                "09ff993e9bbe0a97"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "09ff993e9bbe0a97",
+        "type": "function",
+        "z": "defbbaec7d55bf59",
+        "name": "coils",
+        "func": "const coils = msg.payload;\n\nreturn [\n    { payload: Boolean(coils[0]), topic: \"mixer_running\" },\n    { payload: Boolean(coils[1]), topic: \"mixer_fault_state\" },\n    { payload: Boolean(coils[2]), topic: \"high_level_alarm\" }\n];",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 340,
+        "wires": [
+            [
+                "05105fe453aff448"
+            ],
+            [
+                "836dc0991281187c"
+            ],
+            [
+                "f33a55e5f3746ad3"
+            ]
+        ]
+    },
+    {
+        "id": "836dc0991281187c",
+        "type": "debug",
+        "z": "defbbaec7d55bf59",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f33a55e5f3746ad3",
+        "type": "debug",
+        "z": "defbbaec7d55bf59",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "05105fe453aff448",
+        "type": "ui-template",
+        "z": "defbbaec7d55bf59",
+        "group": "90fbf60b31d884f3",
+        "page": "",
+        "ui": "",
+        "name": "Mixer Status",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "head": "",
+        "format": "<div style=\"text-align:center; padding:15px;\">\n\n    <div style=\"font-size:18px; font-weight:bold; margin-bottom:15px;\">\n        MIXER STATUS\n    </div>\n\n    <div v-if=\"msg.payload === true\">\n        <div class=\"mixer-running\">⚙</div>\n\n        <div style=\"\n            margin-top:10px;\n            font-size:20px;\n            font-weight:bold;\n            color:#22c55e;\n        \">\n            ● RUNNING\n        </div>\n    </div>\n\n    <div v-if=\"msg.payload === false\">\n        <div class=\"mixer-stopped\">⚙</div>\n\n        <div style=\"\n            margin-top:10px;\n            font-size:20px;\n            font-weight:bold;\n            color:#ef4444;\n        \">\n            ● STOPPED\n        </div>\n    </div>\n\n</div>\n\n<style>\n.mixer-running {\n    display:inline-block;\n    font-size:70px;\n    animation: mixer-spin 1.2s linear infinite;\n}\n\n.mixer-stopped {\n    display:inline-block;\n    font-size:70px;\n    opacity:0.45;\n}\n\n@keyframes mixer-spin {\n    from { transform: rotate(0deg); }\n    to   { transform: rotate(360deg); }\n}\n</style>",
+        "storeOutMessages": true,
+        "passthru": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 630,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "043e7c3cbcc08c0b",
+        "type": "ui-button",
+        "z": "defbbaec7d55bf59",
+        "group": "90fbf60b31d884f3",
+        "name": "Start",
+        "label": "Start",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "",
+        "topicType": "str",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 790,
+        "y": 440,
+        "wires": [
+            [
+                "2f0bb8a3464e173c"
+            ]
+        ]
+    },
+    {
+        "id": "468ff203a8fe196d",
+        "type": "ui-button",
+        "z": "defbbaec7d55bf59",
+        "group": "90fbf60b31d884f3",
+        "name": "Stop",
+        "label": "Stop",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "emulateClick": false,
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "iconPosition": "left",
+        "payload": "false",
+        "payloadType": "bool",
+        "topic": "topic",
+        "topicType": "msg",
+        "buttonColor": "",
+        "textColor": "",
+        "iconColor": "",
+        "enableClick": true,
+        "enablePointerdown": false,
+        "pointerdownPayload": "",
+        "pointerdownPayloadType": "str",
+        "enablePointerup": false,
+        "pointerupPayload": "",
+        "pointerupPayloadType": "str",
+        "x": 790,
+        "y": 580,
+        "wires": [
+            [
+                "2f0bb8a3464e173c"
+            ]
+        ]
+    },
+    {
+        "id": "2f0bb8a3464e173c",
+        "type": "modbus-write",
+        "z": "defbbaec7d55bf59",
+        "name": "Mixer Run Control",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "1",
+        "server": "705ae52aae33e225",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 970,
+        "y": 500,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "c963dfe5f24bad38",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-modbus": "5.60.2",
+            "@flowfuse/node-red-dashboard": "1.31.0"
+        }
+    }
+]

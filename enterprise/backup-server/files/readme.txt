@@ -12,6 +12,6 @@ This server stores temporary backup exports and migration notes for the Enterpri
 
 - Temporary maintenance credenttials were created during the migration window.
 
-
+flag{shared_files}
 
 Review migrotating temporary accounts.

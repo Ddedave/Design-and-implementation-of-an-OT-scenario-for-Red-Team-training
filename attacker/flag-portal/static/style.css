@@ -1,0 +1,189 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #0b0f14;
+    color: #e6edf3;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+.container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+header {
+    margin-bottom: 35px;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+header h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+    color: #9da7b3;
+    margin-bottom: 16px;
+}
+
+header p {
+    color: #9da7b3;
+    max-width: 750px;
+    line-height: 1.6;
+}
+
+.progress-section {
+    margin-bottom: 30px;
+}
+
+.progress-text {
+    margin-bottom: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+    background: #202832;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: #36d399;
+}
+
+.stage-card {
+    background: #121922;
+    border: 1px solid #27313d;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.stage-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 22px;
+}
+
+.stage-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #36d399;
+    font-family: monospace;
+}
+
+.stage-header h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.status {
+    font-size: 0.9rem;
+    color: #f0b429;
+}
+
+.objective {
+    margin-bottom: 20px;
+}
+
+.objective strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #9da7b3;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.objective p {
+    line-height: 1.5;
+}
+
+.hint-section {
+    margin-bottom: 20px;
+}
+
+.hint-button,
+.submit-button {
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 10px 16px;
+    font-weight: bold;
+}
+
+.hint-button {
+    background: #27313d;
+    color: #e6edf3;
+}
+
+.hint {
+    margin-top: 12px;
+    padding: 14px;
+    background: #0d141c;
+    border-left: 3px solid #58a6ff;
+    color: #b8c4d0;
+}
+
+.hidden {
+    display: none;
+}
+
+.submission {
+    display: flex;
+    gap: 10px;
+}
+
+.submission input {
+    flex: 1;
+    background: #0b0f14;
+    border: 1px solid #344252;
+    border-radius: 6px;
+    padding: 12px;
+    color: #e6edf3;
+    font-family: monospace;
+}
+
+.submit-button {
+    background: #36d399;
+    color: #07100c;
+}
+
+@media (max-width: 650px) {
+    .submission {
+        flex-direction: column;
+    }
+}
+.stages {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.status.completed {
+    color: #36d399;
+}
+
+.status.incorrect {
+    color: #ff5c5c;
+}
+
+.completed-card {
+    border-color: #36d399;
+}
+
+.submit-button:disabled,
+.submission input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

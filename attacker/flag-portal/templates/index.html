@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OT Red Team Assessment</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>Refrescos Favoritos</h1>
+        <h2>OT Red Team Assessment</h2>
+
+        <p>
+            Progress through the environment, identify the required flags
+            and submit them to validate each stage of the assessment.
+        </p>
+    </header>
+
+
+    <section class="progress-section">
+
+        <div class="progress-text">
+            Progress: <strong>0 / 12</strong>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+    </section>
+
+
+    <div class="stages">
+
+        <!-- STAGE 01 -->
+        <section
+            class="stage-card {% if 1 in solved_stages %}completed-card{% endif %}"
+            data-stage="1"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">01</span>
+
+                <div>
+                    <h3>Initial Access</h3>
+
+                    <span class="status {% if 1 in solved_stages %}completed{% endif %}">
+                        {% if 1 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+                <p>Obtain initial access to the Web Server.</p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    Carefully review the functionalities exposed by the web application.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 1 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 1 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 02 -->
+        <section
+            class="stage-card {% if 2 in solved_stages %}completed-card{% endif %}"
+            data-stage="2"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">02</span>
+
+                <div>
+                    <h3>Privilege Escalation</h3>
+
+                    <span class="status {% if 2 in solved_stages %}completed{% endif %}">
+                        {% if 2 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+                <p>Obtain root access on the Web Server.</p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    Enumerate local permissions, binaries, and configurations
+                    that may allow privilege escalation.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 2 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 2 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 03 -->
+        <section
+            class="stage-card {% if 3 in solved_stages %}completed-card{% endif %}"
+            data-stage="3"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">03</span>
+
+                <div>
+                    <h3>Internal File Share Discovery</h3>
+
+                    <span class="status {% if 3 in solved_stages %}completed{% endif %}">
+                        {% if 3 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+                <p>Discover and access the internal shared resource.</p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    Once inside the environment, not every interesting service
+                    will necessarily be located on the same host.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 3 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 3 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 04 -->
+        <section
+            class="stage-card {% if 4 in solved_stages %}completed-card{% endif %}"
+            data-stage="4"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">04</span>
+
+                <div>
+                    <h3>Backup Server Discovery</h3>
+
+                    <span class="status {% if 4 in solved_stages %}completed{% endif %}">
+                        {% if 4 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+                <p>Find the flag inside readme.txt on the Backup Server.</p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    Backup servers often contain more information than they should.
+                    Review the shared files carefully.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 4 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 4 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 05 -->
+        <section
+            class="stage-card {% if 5 in solved_stages %}completed-card{% endif %}"
+            data-stage="5"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">05</span>
+
+                <div>
+                    <h3>Database Reconnaissance</h3>
+
+                    <span class="status {% if 5 in solved_stages %}completed{% endif %}">
+                        {% if 5 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+                <p>Complete reconnaissance of the Enterprise database.</p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    Previously recovered notes may contain enough information
+                    to identify how to access the service.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 5 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 5 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 06 -->
+        <section
+            class="stage-card {% if 6 in solved_stages %}completed-card{% endif %}"
+            data-stage="6"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">06</span>
+
+                <div>
+                    <h3>IDMZ Discovery</h3>
+
+                    <span class="status {% if 6 in solved_stages %}completed{% endif %}">
+                        {% if 6 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+                <p>Identify the path toward the Industrial DMZ.</p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    Monitoring systems may reveal infrastructure details,
+                    migrations, and remote access information.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 6 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 6 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 07 -->
+        <section
+            class="stage-card {% if 7 in solved_stages %}completed-card{% endif %}"
+            data-stage="7"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">07</span>
+
+                <div>
+                    <h3>Industrial DMZ Access</h3>
+
+                    <span class="status {% if 7 in solved_stages %}completed{% endif %}">
+                        {% if 7 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+                <p>Reach the Jump Server located in the Industrial DMZ.</p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    Look for credentials and authorized access paths
+                    leading toward the OT environment.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 7 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 7 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 08 -->
+        <section
+            class="stage-card {% if 8 in solved_stages %}completed-card{% endif %}"
+            data-stage="8"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">08</span>
+
+                <div>
+                    <h3>PLC Mapping</h3>
+
+                    <span class="status {% if 8 in solved_stages %}completed{% endif %}">
+                        {% if 8 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+                <p>Discover the PLC and obtain its register and coil mapping.</p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    The I/O Server knows how to communicate with the controller,
+                    even if it does not expose every detail directly.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 8 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 8 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 09 -->
+        <section
+            class="stage-card {% if 9 in solved_stages %}completed-card{% endif %}"
+            data-stage="9"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">09</span>
+
+                <div>
+                    <h3>Telemetry Manipulation</h3>
+
+                    <span class="status {% if 9 in solved_stages %}completed{% endif %}">
+                        {% if 9 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+
+                <p>
+                    Make SCADA display manipulated telemetry while the real
+                    process is in a dangerous state.
+                </p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    Compare the real process state with the information
+                    received by SCADA.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 9 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 9 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 10 -->
+        <section
+            class="stage-card {% if 10 in solved_stages %}completed-card{% endif %}"
+            data-stage="10"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">10</span>
+
+                <div>
+                    <h3>Overspeed Condition</h3>
+
+                    <span class="status {% if 10 in solved_stages %}completed{% endif %}">
+                        {% if 10 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+
+                <p>
+                    Drive the mixer speed above the defined threshold
+                    and trigger the overspeed condition.
+                </p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    The value displayed to the operator and the safety limit
+                    are not necessarily the same variable.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 10 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 10 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 11 -->
+        <section
+            class="stage-card {% if 11 in solved_stages %}completed-card{% endif %}"
+            data-stage="11"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">11</span>
+
+                <div>
+                    <h3>Process Stoppage</h3>
+
+                    <span class="status {% if 11 in solved_stages %}completed{% endif %}">
+                        {% if 11 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+
+                <p>
+                    Stop the mixer process and make the stopped condition
+                    visible in SCADA.
+                </p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    The mixer execution state is represented by a control
+                    variable in the PLC.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 11 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 11 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- STAGE 12 -->
+        <section
+            class="stage-card {% if 12 in solved_stages %}completed-card{% endif %}"
+            data-stage="12"
+        >
+
+            <div class="stage-header">
+                <span class="stage-number">12</span>
+
+                <div>
+                    <h3>High Tank Level</h3>
+
+                    <span class="status {% if 12 in solved_stages %}completed{% endif %}">
+                        {% if 12 in solved_stages %}
+                            Completed
+                        {% else %}
+                            Pending
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="objective">
+                <strong>Objective</strong>
+
+                <p>
+                    Raise the tank level until the high-level alarm
+                    condition is reached.
+                </p>
+            </div>
+
+            <div class="hint-section">
+                <button class="hint-button" onclick="toggleHint(this)">
+                    Show Hint
+                </button>
+
+                <div class="hint hidden">
+                    A protection mechanism limits the normal filling cycle
+                    before the alarm range is reached.
+                </div>
+            </div>
+
+            <div class="submission">
+                <input
+                    type="text"
+                    placeholder="flag{...}"
+                    autocomplete="off"
+                    {% if 12 in solved_stages %}disabled{% endif %}
+                >
+
+                <button
+                    class="submit-button"
+                    onclick="submitFlag(this)"
+                    {% if 12 in solved_stages %}disabled{% endif %}
+                >
+                    Submit Flag
+                </button>
+            </div>
+
+        </section>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function toggleHint(button) {
+
+    const hint = button.nextElementSibling;
+
+    if (hint.classList.contains("hidden")) {
+
+        hint.classList.remove("hidden");
+        button.textContent = "Hide Hint";
+
+    } else {
+
+        hint.classList.add("hidden");
+        button.textContent = "Show Hint";
+
+    }
+}
+
+
+async function submitFlag(button) {
+
+    const card = button.closest(".stage-card");
+    const stage = card.dataset.stage;
+
+    const input = card.querySelector(".submission input");
+    const status = card.querySelector(".status");
+
+    const submittedFlag = input.value.trim();
+
+    status.classList.remove("completed", "incorrect");
+
+    if (!submittedFlag) {
+        status.textContent = "Enter a flag";
+        return;
+    }
+
+    try {
+
+        const response = await fetch("/submit", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                stage: stage,
+                flag: submittedFlag
+            })
+
+        });
+
+        const result = await response.json();
+
+        if (result.status === "correct") {
+
+            status.textContent = "Completed";
+            status.classList.add("completed");
+
+            card.classList.add("completed-card");
+
+            input.disabled = true;
+            button.disabled = true;
+
+            updateProgress();
+
+        } else {
+
+            status.textContent = "Incorrect Flag";
+            status.classList.add("incorrect");
+
+        }
+
+    } catch (error) {
+
+        status.textContent = "Validation Error";
+        status.classList.add("incorrect");
+
+    }
+}
+
+
+function updateProgress() {
+
+    const completed =
+        document.querySelectorAll(".completed-card").length;
+
+    const progressText =
+        document.querySelector(".progress-text strong");
+
+    const progressFill =
+        document.querySelector(".progress-fill");
+
+    progressText.textContent =
+        completed + " / 12";
+
+    const percentage =
+        (completed / 12) * 100;
+
+    progressFill.style.width =
+        percentage + "%";
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateProgress();
+});
+
+</script>
+
+</body>
+</html>

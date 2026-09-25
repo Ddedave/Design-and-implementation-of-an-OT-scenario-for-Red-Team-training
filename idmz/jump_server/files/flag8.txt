@@ -1,1 +1,0 @@
-flag{jump_server_idmz_access}
